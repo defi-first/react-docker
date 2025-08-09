@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: . # 指定 Dockerfile 所在的目录
+    ports:
+      - "5176:5173"
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./src
+          target: /app/src
+          action: sync
